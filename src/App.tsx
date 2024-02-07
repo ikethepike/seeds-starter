@@ -1,25 +1,33 @@
-import React from "react";
-import "./App.css";
+import React, { useState } from "react";
 
-function App() {
-  const name = "Harold";
-
+function Button(props: any) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>🌱</h1>
-        <p>Welcome {name}!</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <button
+      onClick={props.onClick}
+      style={{ backgroundColor: "green", borderRadius: "25%", color: "white" }}
+    >
+      {props.children}
+    </button>
   );
 }
 
-export default App;
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  function play() {
+    setIsPlaying(true);
+  }
+
+  function pause() {
+    setIsPlaying(false);
+  }
+
+  return (
+    <>
+      <h1>Hello world!</h1>
+      <Button>Previous</Button>
+      <Button>Play / Pause</Button>
+      <Button>Next</Button>
+    </>
+  );
+}
