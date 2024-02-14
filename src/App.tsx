@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Button(props: any) {
   return (
@@ -14,6 +14,20 @@ function Button(props: any) {
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const audio = new Audio(
+    "https://file-examples.com/storage/fe63e96e0365c0e1e99a842/2017/11/file_example_MP3_5MG.mp3"
+  );
+
+  useEffect(() => {
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+
+    return () => audio.pause();
+  }, [isPlaying]);
+
   function play() {
     setIsPlaying(true);
   }
@@ -26,7 +40,11 @@ export default function App() {
     <>
       <h1>Hello world!</h1>
       <Button>Previous</Button>
-      <Button>Play / Pause</Button>
+      {isPlaying ? (
+        <Button onClick={pause}>Pause</Button>
+      ) : (
+        <Button onClick={play}>Play</Button>
+      )}
       <Button>Next</Button>
     </>
   );
