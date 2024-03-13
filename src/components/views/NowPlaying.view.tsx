@@ -3,12 +3,11 @@ import AlbumArt from "../AlbumArt";
 import ProgressBar from "../ProgressBar";
 
 import "./_NowPlaying.css";
+import { Song } from "../../types";
 
-export default function NowPlaying() {
+export default function NowPlaying(props: { song: Song }) {
   const [progress, setProgress] = useState(0);
-  const audio = useRef(
-    new Audio("http://localhost:3000/music/public-domain/blues.mp3")
-  );
+  const audio = useRef(new Audio(props.song.src));
 
   useEffect(() => {
     audio.current.addEventListener("timeupdate", () => {
@@ -19,10 +18,7 @@ export default function NowPlaying() {
 
   return (
     <section className="now-playing">
-      <AlbumArt
-        src="https://f4.bcbits.com/img/a4058062868_5.jpg"
-        alt="Kitty cat"
-      />
+      <AlbumArt src={props.song.cover} alt="Kitty cat" />
       <ProgressBar progressPercent={progress} />
 
       <button
