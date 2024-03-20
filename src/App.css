@@ -3,5 +3,43 @@ body {
 }
 
 .App {
+  color: white;
+  display: flex; 
+  flex-flow: row wrap; 
   background: hsla(0,0,20,1);
 }
+
+section {
+  height: 90vh;
+}
+
+section.artists, 
+section.songs {
+  width: 30%;
+}
+
+section.albums {
+  width: 40%; 
+  border-left: 1px solid gray; 
+  border-right: 1px solid gray; 
+}
+
+.albums ol {
+  display: flex; 
+  gap: 2rem;
+  flex-flow: row wrap;
+  padding :2rem;
+  justify-content: space-around;  
+}
+
+.albums li {
+  width: 15rem;
+  height: 15rem; 
+}
+
+img {
+  object-fit: cover; 
+  max-height: 100%;
+  max-width: 100%;
+}
+
